@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+    <title>Képviselőválasztó</title>
+</head>
+<body style="background-color: lightblue;">
+    <nav class="navbar navbar-light bg-light navbar-expand-md mb-3">
+        <a href="./index.html" class="navbar-brand">Képviselőválasztó</a>
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbar">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a href="./index.html" class="nav-link">Választókerületek</a></li>
+                <li class="nav-item"><a href="./kepviselojeloltek.html" class="nav-link">Képviselőjelöltek</a></li>
+                <li class="nav-item"><a href="./jelolok.html" class="nav-link">Jelölőszervezetek</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container" style="background-color: white; padding: 0px;  ; border: none">
+        <table class="table table-hover align-middle">
+            <thead>
+                <tr>
+                    <th style="border-right-width: 0px">
+                        Az összes jelölő szervezet
+                    </th>
+                    <th style="text-align: right; border-left-width: 0px">
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#jeloloaddmodal">
+                            <i class="bi bi-plus-square"></i>
+                        </button>
+                    </th>
+                </tr>    
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="border-right-width: 0px" onclick="window.location='fidesz.html'">
+                        Fidesz
+                    </td>
+                    <td style="text-align: right; border-left-width: 0px">
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#jeloloeditmodal">
+                            <i class="bi bi-pencil-square"></i> 
+                        </button>
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#jelolodeletemodal">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr >
+                    <td style="border-right-width: 0px">
+                        LMP
+                    </td>
+                    <td style="text-align: right; border-left-width: 0px">
+                        <button class="btn btn-primary">
+                            <i class="bi bi-pencil-square"></i> 
+                        </button>
+                        <button class="btn btn-danger">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr">
+                    <td style="border-right-width: 0px">
+                        stb...
+                    </td>
+                    <td style="text-align: right; border-left-width: 0px">
+                        <button class="btn btn-primary">
+                            <i class="bi bi-pencil-square"></i> 
+                        </button>
+                        <button class="btn btn-danger">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+                <!-- Modals -->
+
+                <div class="modal fade" id="jeloloaddmodal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Jelölő szervezet adatainak módosítása</h5>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3" style="text-align: start;">
+                                    <label for="oevknev" class="form-label">Név:</label>
+                                    <input type="text" class="form-control" id="oevknev">
+                                    <label for="ideologiak" class="form-label">Ideológiák:</label>
+                                    <input type="text" class="form-control", id="ideologiak">
+                                    <label for="kepviseloprogram" class="form-label">Programja:</label>
+                                    <input type="text" class="form-control" id="kepviseloprogram">
+                                    <label for="kepviseloprogram" class="form-label">Bemutatkozás:</label>
+                                    <input type="text" class="form-control" id="kepviseloprogram">
+                                    <label for="kepviseloprogram" class="form-label">Kép:</label>
+                                    <input type="file" class="form-control" id="kepviseloprogram">
+                                </div>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégsem</button>
+                                <button type="submit" class="btn btn-primary">Módosítás</button>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="modal fade" id="jelolodeletemodal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Választókerület törlése</h5>
+                        </div>
+                        <div class="modal-body">
+                            <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                  <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                </symbol>
+                              </svg>
+                            <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                                <div>
+                                    Biztos, hogy ki akarod törölni a jelölő szervezetet?
+                                </div>
+                              </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégsem</button>
+                            <button type="button" class="btn btn-primary">Igen</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="modal fade" id="jeloloeditmodal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Jelölő szervezet adatainak módosítása</h5>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3" style="text-align: start;">
+                                    <label for="oevknev" class="form-label">Név:</label>
+                                    <input type="text" class="form-control" id="oevknev" value="Fidesz - Magyar Polgári Szövetség">
+                                    <label for="ideologiak" class="form-label">Ideológiák:</label>
+                                    <input type="text" class="form-control", id="ideologiak" value="nemzeti konzervatizmus, antikommunizmus, nacionalizmus, kereszténydemokrácia, euroszkepticizmus">
+                                    <label for="kepviseloprogram" class="form-label">Programja:</label>
+                                    <input type="text" class="form-control" id="kepviseloprogram" value="Nincs">
+                                    <label for="kepviseloprogram" class="form-label">Bemutatkozás:</label>
+                                    <input type="text" class="form-control" id="kepviseloprogram" value="Lorem ipsum ...">
+                                    <label for="kepviseloprogram" class="form-label">Kép:</label>
+                                    <div>
+                                        <img width="150px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Fidesz_2015.svg/1024px-Fidesz_2015.svg.png">
+                                    </div>
+                                    <input type="file" class="form-control" id="kepviseloprogram" value="c://sup/baby/take/me/to/dinner">
+                                </div>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégsem</button>
+                                <button type="submit" class="btn btn-primary">Módosítás</button>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+</body>
+</html>
