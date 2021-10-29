@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+    <title>Képviselőválasztó</title>
+</head>
+<body style="background-color: lightblue;">
+    <%- include('navbar') -%>
+    <div class="container" style="background-color: white; padding: 0px;  ; border: none">
+        <table class="table table-hover align-middle">
+            <thead>
+                <tr>
+                    <th style="border-right-width: 0px">
+                        Az összes képviselőjelölt
+                    </th>
+                    <th style="text-align: right; border-left-width: 0px">
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kepviseloaddModal">
+                            <i class="bi bi-plus-square"></i>
+                        </button>
+                    </th>
+                </tr>    
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="border-right-width: 0px">
+                        Csárdi Antal - LMP
+                    </td>
+                    <td style="text-align: right; border-left-width: 0px">
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kepviseloeditmodal">
+                            <i class="bi bi-pencil-square"></i> 
+                        </button>
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#kepviselodeletemodal">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border-right-width: 0px" onclick="window.location='/kepviselo/2'">
+                        Hollik István - Fidesz-KDNP
+                    </td>
+                    <td style="text-align: right; border-left-width: 0px">
+                        <button class="btn btn-primary">
+                            <i class="bi bi-pencil-square"></i> 
+                        </button>
+                        <button class="btn btn-danger">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr">
+                    <td style="border-right-width: 0px">
+                        stb...
+                    </td>
+                    <td style="text-align: right; border-left-width: 0px">
+                        <button class="btn btn-primary">
+                            <i class="bi bi-pencil-square"></i> 
+                        </button>
+                        <button class="btn btn-danger">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+                <!-- Modals -->
+                <div class="modal fade" id="kepviseloaddModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Új Képviselő hozzáadása</h5>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3" style="text-align: start;">
+                                    <label for="oevknev" class="form-label">Név:</label>
+                                    <input type="text" class="form-control" id="oevknev">
+                                    <label for="kepviselok" class="form-label">Jelölő szervezetek:</label>
+                                    <ul>
+                                        <li>
+                                            Fidesz
+                                            <a href="#" class="link-danger"><i class="bi bi-trash"></i></a>
+                                        </li>
+                                        <li>
+                                            MSZP
+                                            <a href="#" class="link-danger"><i class="bi bi-trash"></i></a>
+                                        </li>
+                                    </ul>
+                                    <label for="kepviselok" class="form-label">Jelölő szervezet hozzáadása:</label>
+                                    <select class="form-select" id="kepviselok">
+                                        <option selected></option>
+                                        <option value="csardi_antal">Fidesz</option>
+                                        <option value="hollik_istvan">MSZP</option>
+                                        <option value="gy_nemeth_erzsebet">LMP</option>
+                                        <option value="gelencser_ferenc">KDNP</option>
+                                        <option value="gelencser_ferenc">stb...</option>
+                                    </select>
+                                    <label for="kepviseloprogram" class="form-label">Programja:</label>
+                                    <input type="text" class="form-control" id="kepviseloprogram">
+                                    <label for="kepviseloprogram" class="form-label">Bemutatkozás:</label>
+                                    <input type="text" class="form-control" id="kepviseloprogram" style="resize: both;">
+                                    <label for="kepviseloprogram" class="form-label">Kép:</label>
+                                    <input type="file" class="form-control" id="kepviseloprogram" style="resize: both;">
+                                </div>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégsem</button>
+                                <button type="submit" class="btn btn-primary">Hozzáadás</button>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="modal fade" id="kepviselodeletemodal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Választókerület törlése</h5>
+                        </div>
+                        <div class="modal-body">
+                            <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                  <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                </symbol>
+                              </svg>
+                            <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                                <div>
+                                  Biztos, hogy ki akarod törölni a képviselőt?
+                                </div>
+                              </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégsem</button>
+                            <button type="button" class="btn btn-primary">Igen</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="modal fade" id="kepviseloeditmodal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Képviselő adatainak módosítása</h5>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3" style="text-align: start;">
+                                    <label for="oevknev" class="form-label">Név:</label>
+                                    <input type="text" class="form-control" id="oevknev" value="Csárdi Antal">
+                                    <label for="kepviselok" class="form-label">Jelölő szervezetek:</label>
+                                    <ul>
+                                        <li>
+                                            LMP
+                                            <a href="#" class="link-danger"><i class="bi bi-trash"></i></a>
+                                        </li>
+                                    </ul>
+                                    <label for="kepviselok" class="form-label">Jelölő szervezet hozzáadása:</label>
+                                    <select class="form-select" id="kepviselok">
+                                        <option selected></option>
+                                        <option value="csardi_antal">Fidesz</option>
+                                        <option value="hollik_istvan">MSZP</option>
+                                        <option value="gy_nemeth_erzsebet">LMP</option>
+                                        <option value="gelencser_ferenc">KDNP</option>
+                                        <option value="gelencser_ferenc">stb...</option>
+                                    </select>
+                                    <label for="kepviseloprogram" class="form-label">Programja:</label>
+                                    <input type="text" class="form-control" id="kepviseloprogram" value="Lorem ipsum ...">
+                                    <label for="kepviseloprogram" class="form-label">Bemutatkozás:</label>
+                                    <input type="text" class="form-control" id="kepviseloprogram" value="Lorem ipsum ...">
+                                    <label for="kepviseloprogram" class="form-label">Kép:</label>
+                                    <div>
+                                        <img width="150px" src="https://scontent-vie1-1.xx.fbcdn.net/v/t1.6435-9/243698099_2277807935689130_3936548578800058249_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=8bfeb9&_nc_ohc=eHE2XN_W45MAX_czKnj&tn=pR-63lD1uNOCV86U&_nc_ht=scontent-vie1-1.xx&oh=cb64f3ebae1930aeb5cc8749c90e0733&oe=617B6844">
+                                    </div>
+                                    <input type="file" class="form-control" id="kepviseloprogram" value="c://sup/baby/take/me/to/dinner">
+                                </div>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégsem</button>
+                                <button type="submit" class="btn btn-primary">Módosítás</button>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+</body>
+</html>

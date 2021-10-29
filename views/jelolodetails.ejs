@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+    <title>Képviselőválasztó</title>
+</head>
+<body style="background-color: lightblue;">
+    <%- include('navbar') -%>
+
+    <div class="container" style="background-color: white; padding: 0px;  ; border: none">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th colspan="2" style="border-right-width: 0px;"> 
+                        <h3>Fidesz Párt</h3>
+                    </th>
+                    <th style="text-align: right; border-left-width: 0px">
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#jeloloeditmodal">
+                            <i class="bi bi-pencil-square"></i> 
+                        </button>
+                    </th>
+                </tr>    
+            </thead>
+            <tbody> 
+                <tr>
+                    <td rowspan="4" style="width: 1px">
+                        <img width="150px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Fidesz_2015.svg/1024px-Fidesz_2015.svg.png"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h5>Név:</h5>
+                    </td>
+                    <td>
+                        <p>Fidesz - Magyar Polgári Szövetség</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 1px">
+                        <h5>Ideológiák:</h5>
+                    </td>
+                    <td>
+                        <p>
+                            nemzeti konzervatizmus, antikommunizmus, nacionalizmus,
+                            kereszténydemokrácia, euroszkepticizmus
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h5>Programja:</h5>
+                    </td>
+                    <td>
+                        <p>Nincs</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan= "3">
+                        <h3>Bemutatkozás:</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt explicabo ea velit tempore excepturi sapiente quo enim nostrum dignissimos laudantium eum consectetur a amet ipsam, dolorem porro, necessitatibus nesciunt quod.
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Modals -->
+        <div class="modal fade" id="jeloloeditmodal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Jelölő szervezet adatainak módosítása</h5>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3" style="text-align: start;">
+                            <label for="oevknev" class="form-label">Név:</label>
+                            <input type="text" class="form-control" id="oevknev" value="Fidesz - Magyar Polgári Szövetség">
+                            <label for="ideologiak" class="form-label">Ideológiák:</label>
+                            <input type="text" class="form-control", id="ideologiak" value="nemzeti konzervatizmus, antikommunizmus, nacionalizmus, kereszténydemokrácia, euroszkepticizmus">
+                            <label for="kepviseloprogram" class="form-label">Programja:</label>
+                            <input type="text" class="form-control" id="kepviseloprogram" value="Nincs">
+                            <label for="kepviseloprogram" class="form-label">Bemutatkozás:</label>
+                            <input type="text" class="form-control" id="kepviseloprogram" value="Lorem ipsum ...">
+                            <label for="kepviseloprogram" class="form-label">Kép:</label>
+                            <div>
+                                <img width="150px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Fidesz_2015.svg/1024px-Fidesz_2015.svg.png">
+                            </div>
+                            <input type="file" class="form-control" id="kepviseloprogram" value="c://sup/baby/take/me/to/dinner">
+                        </div>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégsem</button>
+                        <button type="submit" class="btn btn-primary">Módosítás</button>
+                    </form>
+                </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="container">
+        <a href="/kepviselo/5" style="text-decoration: none"><i class="bi bi-arrow-left">&nbsp vissza</i></a>
+    </div>
+</body>
+</html>

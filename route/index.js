@@ -5,14 +5,14 @@ const getOVKListMW = require("../middleware/ovk/getOVKListMW");
 const getOVKMW = require("../middleware/ovk/getOVKMW");
 const deleteOVKMW = require("../middleware/ovk/deleteOVKMW");
 const saveOVKMW = require("../middleware/ovk/saveOVKMW");
-const getKepviseloListMW = require("../middleware/ovk/getKepviseloListMW");
-const getKepviseloMW = require("../middleware/ovk/getKepviseloMW");
-const deleteKepviseloMW = require("../middleware/ovk/deleteKepviseloMW");
-const saveKepviseloMW = require("../middleware/ovk/saveKepviseloMW");
-const getJeloloListMW = require("../middleware/ovk/getJeloloListMW");
-const getJeloloMW = require("../middleware/ovk/getJeloloMW");
-const deleteJeloloMW = require("../middleware/ovk/deleteJeloloMW");
-const saveJeloloMW = require("../middleware/ovk/saveJeloloMW");
+const getKepviseloListMW = require("../middleware/kepviselo/getKepviseloListMW");
+const getKepviseloMW = require("../middleware/kepviselo/getKepviseloMW");
+const deleteKepviseloMW = require("../middleware/kepviselo/deleteKepviseloMW");
+const saveKepviseloMW = require("../middleware/kepviselo/saveKepviseloMW");
+const getJeloloListMW = require("../middleware/jelolo/getJeloloListMW");
+const getJeloloMW = require("../middleware/jelolo/getJeloloMW");
+const deleteJeloloMW = require("../middleware/jelolo/deleteJeloloMW");
+const saveJeloloMW = require("../middleware/jelolo/saveJeloloMW");
 
 module.exports = function (app) {
     const objRepo = {};
@@ -47,8 +47,8 @@ module.exports = function (app) {
 
     app.get("/kepviselo/list",
         authMW(objRepo),
-        getKepviseloListMW(objRepo));
-        renderMW(objRepo, "kepviselolist")
+        getKepviseloListMW(objRepo),
+        renderMW(objRepo, "kepviselolist"));
 
     app.use('/kepviselo/edit/:kepviseloid',
         authMW(objRepo),
@@ -71,8 +71,8 @@ module.exports = function (app) {
     
     app.get("/jelolo/list",
         authMW(objRepo),
-        getJeloloListMW(objRepo));
-        renderMW(objRepo, "jelololist")
+        getJeloloListMW(objRepo),
+        renderMW(objRepo, "jelololist"));
 
     app.use('/jelolo/edit/:jeloloid',
         authMW(objRepo),
