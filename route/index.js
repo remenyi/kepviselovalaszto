@@ -14,8 +14,17 @@ const getJeloloMW = require("../middleware/jelolo/getJeloloMW");
 const deleteJeloloMW = require("../middleware/jelolo/deleteJeloloMW");
 const saveJeloloMW = require("../middleware/jelolo/saveJeloloMW");
 
+
+const kepviseloModel = require('../models/kepviselo');
+const ovkModel = require('../models/ovk');
+const jeloloModel = require('../models/jelolo');
+
 module.exports = function (app) {
-    const objRepo = {};
+    const objRepo = {
+        ovkModel: ovkModel,
+        kepviseloModel: kepviseloModel,
+        jeloloModel: jeloloModel,
+    };
 
     app.use('/login',
         checkPassMW(objRepo),

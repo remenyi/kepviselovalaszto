@@ -25,10 +25,11 @@
                     </th>
                 </tr>    
             </thead>
-            <tbody>      
+            <tbody>
+                <% ovks.forEach( function(ovk) { %>     
                 <tr>
                     <td style="border-right-width: 0px" onclick="window.location='/ovk/1'">
-                            Budapest 1. ovk
+                            <%= ovk.nev %>
                     </td>
                     <td style="text-align: right; border-left-width: 0px; width: auto">
                         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ovkeditmodal">
@@ -39,84 +40,7 @@
                         </button>
                     </td>
                 </tr>
-                <tr>
-                    <td style="border-right-width: 0px">
-                        Budapest 2. ovk
-                    </td>
-                    <td style="text-align: right; border-left-width: 0px">
-                        <button class="btn btn-primary">
-                            <i class="bi bi-pencil-square"></i> 
-                        </button>
-                        <button class="btn btn-danger">
-                            <i class="bi bi-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="border-right-width: 0px">
-                        Budapest 3. ovk
-                    </td>
-                    <td style="text-align: right; border-left-width: 0px">
-                        <button class="btn btn-primary">
-                            <i class="bi bi-pencil-square"></i> 
-                        </button>
-                        <button class="btn btn-danger">
-                            <i class="bi bi-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="border-right-width: 0px">
-                        Budapest 4. ovk
-                    </td>
-                    <td style="text-align: right; border-left-width: 0px">
-                        <button class="btn btn-primary">
-                            <i class="bi bi-pencil-square"></i> 
-                        </button>
-                        <button class="btn btn-danger">
-                            <i class="bi bi-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="border-right-width: 0px">
-                        Budapest 5. ovk
-                    </td>
-                    <td style="text-align: right; border-left-width: 0px">
-                        <button class="btn btn-primary">
-                            <i class="bi bi-pencil-square"></i> 
-                        </button>
-                        <button class="btn btn-danger">
-                            <i class="bi bi-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="border-right-width: 0px">
-                        Budapest 6. ovk
-                    </td>
-                    <td style="text-align: right; border-left-width: 0px">
-                        <button class="btn btn-primary">
-                            <i class="bi bi-pencil-square"></i> 
-                        </button>
-                        <button class="btn btn-danger">
-                            <i class="bi bi-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="border-right-width: 0px">
-                        Budapest 7. ovk
-                    </td>
-                    <td style="text-align: right; border-left-width: 0px">
-                        <button class="btn btn-primary">
-                            <i class="bi bi-pencil-square"></i> 
-                        </button>
-                        <button class="btn btn-danger">
-                            <i class="bi bi-trash"></i>
-                        </button>
-                    </td>
-                </tr>
+                <% }); %>
             </tbody>
         </table>
 
