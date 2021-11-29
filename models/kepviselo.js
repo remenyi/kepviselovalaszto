@@ -5,10 +5,7 @@ var picroot = require('../config/pics');
 var Kepviselo = db.model('Kepviselo', {
     nev: String,
     bemutatkozas: String,
-    kep: {
-        type: String,
-        get: v => `${picroot}${v}`,
-    },
+    kep: String,
     program: String,
     _jelolok: [{
         type: Schema.Types.ObjectId,

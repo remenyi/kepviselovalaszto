@@ -16,7 +16,7 @@
             <thead>
                 <tr>
                     <th colspan="2" style="border-right-width: 0px"> 
-                        Hollik István képviselőjelölt
+                        <%= kepviselo.nev %>
                     </th>
                     <th style="text-align: right; border-left-width: 0px">
                         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kepviseloeditmodal">
@@ -28,7 +28,7 @@
             <tbody> 
                 <tr>
                     <td rowspan="4" style="width: 1px">
-                        <img width="150px" src="https://kdnp.hu/sites/default/files/styles/medium/public/kepviselok%20/hollik_istvan-web.jpg?itok=7titXvAB"/>
+                        <img width="150px" src="<%= kepviselo.kep %>"/>
                     </td>
                 </tr>
                 <tr>
@@ -36,7 +36,7 @@
                         <h5>Név:</h5>
                     </td>
                     <td>
-                        <p>Hollik István</p>
+                        <p><%= kepviselo.nev %></p>
                     </td>
                 </tr>
                 <tr>
@@ -44,8 +44,10 @@
                         <h5>Jelölő&nbspszervezetek:</h5>
                     </td>
                     <td>
-                        <a href="/jelolo/6"><p>Fidesz</p></a>
-                        <a href=""><p>KDNP</p></a>
+                        <% jelolok.forEach( function(jelolo) {
+                             if (kepviselo._jelolok.includes(jelolo._id)) { %>
+                                <a href="/jelolo/<%= jelolo._id %>"><p><%= jelolo.nev %></p></a>
+                        <% }}) %>
                     </td>
                 </tr>
                 <tr>
@@ -53,14 +55,14 @@
                         <h5>Programja:</h5>
                     </td>
                     <td>
-                        <p>Nincs</p>
+                        <p><%= kepviselo.program %></p>
                     </td>
                 </tr>
                 <tr>
                     <td colspan= "3">
                         <h3>Bemutatkozás:</h3>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt explicabo ea velit tempore excepturi sapiente quo enim nostrum dignissimos laudantium eum consectetur a amet ipsam, dolorem porro, necessitatibus nesciunt quod.
+                            <%= kepviselo.bemutatkozas %>
                         </p>
                     </td>
                 </tr>
@@ -75,39 +77,26 @@
                     <h5 class="modal-title">Képviselő adatainak módosítása</h5>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form method="POST" action="/kepviselo/edit/<%= kepviselo._id %>">
                         <div class="mb-3" style="text-align: start;">
-                            <label for="oevknev" class="form-label">Név:</label>
-                            <input type="text" class="form-control" id="oevknev" value="Hollik István">
+                            <label for="oevknev" class="form-label" >Név:</label>
+                            <input type="text" class="form-control" id="oevknev" value="<%= kepviselo.nev %>" name="nev">
                             <label for="kepviselok" class="form-label">Jelölő szervezetek:</label>
-                            <ul>
-                                <li>
-                                    Fidesz
-                                    <a href="#" class="link-danger"><i class="bi bi-trash"></i></a>
-                                </li>
-                                <li>
-                                    KDNP
-                                    <a href="#" class="link-danger"><i class="bi bi-trash"></i></a>
-                                </li>
-                            </ul>
-                            <label for="kepviselok" class="form-label">Jelölő szervezet hozzáadása:</label>
-                            <select class="form-select" id="kepviselok">
-                                <option selected></option>
-                                <option value="csardi_antal">Fidesz</option>
-                                <option value="hollik_istvan">MSZP</option>
-                                <option value="gy_nemeth_erzsebet">LMP</option>
-                                <option value="gelencser_ferenc">KDNP</option>
-                                <option value="gelencser_ferenc">stb...</option>
-                            </select>
+                            <% jelolok.forEach( function(jelolo) { %>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="jelolok" value="<%= jelolo._id %>" id="<%= jelolo._id %>>" <% if(kepviselo._jelolok.includes(jelolo._id)) { %> checked <% } %>>
+                                    <label class="form-check-label" for="<%= jelolo._id %>">
+                                        <%= jelolo.nev %>
+                                    </label>
+                                </div>
+                            <% }) %>
                             <label for="kepviseloprogram" class="form-label">Programja:</label>
-                            <input type="text" class="form-control" id="kepviseloprogram" value="Nincs">
-                            <label for="kepviseloprogram" class="form-label">Bemutatkozás:</label>
-                            <input type="text" class="form-control" id="kepviseloprogram" value="Lorem ipsum ...">
-                            <label for="kepviseloprogram" class="form-label">Kép:</label>
-                            <div>
-                                <img width="150px" src="https://kdnp.hu/sites/default/files/styles/medium/public/kepviselok%20/hollik_istvan-web.jpg?itok=7titXvAB">
-                            </div>
-                            <input type="file" class="form-control" id="kepviseloprogram" value="c://sup/baby/take/me/to/dinner">
+                            <input type="text" class="form-control" id="kepviseloprogram" value="<%= kepviselo.program %>" name="program">
+                            <label for="bemutatkozas" class="form-label">Bemutatkozás:</label>
+                            <input type="text" class="form-control" id="bemutatkozas" value="<%= kepviselo.bemutatkozas %>" name="bemutatkozas">
+                            <label for="kep" class="form-label">Kép:</label>
+                            <input type="text" class="form-control" id="kep" value="<%= kepviselo.kep %>" name="kep">
+                            <input type="hidden" name="ret" value="/kepviselo/<%= kepviselo._id %>">
                         </div>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégsem</button>
                         <button type="submit" class="btn btn-primary">Módosítás</button>
@@ -117,9 +106,6 @@
             </div>
         </div>
 
-    </div>
-    <div class="container">
-        <a href="/ovk/4" style="text-decoration: none"><i class="bi bi-arrow-left">&nbsp vissza</i></a>
     </div>
 </body>
 </html>

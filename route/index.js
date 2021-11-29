@@ -3,6 +3,7 @@ const authMW  = require("../middleware/auth/authMW");
 const renderMW = require("../middleware/renderMW");
 const getOVKListMW = require("../middleware/ovk/getOVKListMW");
 const getOVKMW = require("../middleware/ovk/getOVKMW");
+const getKepviseloListByOVKIdMW = require("../middleware/ovk/getKepviseloListMW");
 const deleteOVKMW = require("../middleware/ovk/deleteOVKMW");
 const saveOVKMW = require("../middleware/ovk/saveOVKMW");
 const getKepviseloListMW = require("../middleware/kepviselo/getKepviseloListMW");
@@ -33,11 +34,13 @@ module.exports = function (app) {
     app.get('/',
         authMW(objRepo),
         getOVKListMW(objRepo),
+        getKepviseloListMW(objRepo),
         renderMW(objRepo, 'ovklist'));
 
     app.use('/ovk/edit/:ovkid',
         authMW(objRepo),
         getOVKMW(objRepo),
+        getKepviseloListByOVKIdMW(objRepo),
         saveOVKMW(objRepo));
 
     app.get('/ovk/delete/:ovkid',
@@ -51,12 +54,15 @@ module.exports = function (app) {
 
     app.get("/ovk/:ovkid", 
         authMW(objRepo),
-        getOVKMW(objRepo),
+        getOVKMW(objRepo),  
+        getKepviseloListMW(objRepo),
+        getJeloloListMW(objRepo),
         renderMW(objRepo, "ovkdetails"));
 
     app.get("/kepviselo/list",
         authMW(objRepo),
         getKepviseloListMW(objRepo),
+        getJeloloListMW(objRepo),
         renderMW(objRepo, "kepviselolist"));
 
     app.use('/kepviselo/edit/:kepviseloid',
@@ -75,6 +81,7 @@ module.exports = function (app) {
 
     app.get("/kepviselo/:kepviseloid", 
         authMW(objRepo),
+        getJeloloListMW(objRepo),
         getKepviseloMW(objRepo),
         renderMW(objRepo, "kepviselodetails"));
     

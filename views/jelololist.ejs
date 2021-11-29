@@ -26,83 +26,25 @@
                 </tr>    
             </thead>
             <tbody>
+                <% jelolok.forEach(function(jelolo) { %>
                 <tr>
-                    <td style="border-right-width: 0px" onclick="window.location='/jelolo/4'">
-                        Fidesz
+                    <td style="border-right-width: 0px" onclick="window.location='/jelolo/<%= jelolo._id %>'">
+                        <%= jelolo.nev %>
                     </td>
                     <td style="text-align: right; border-left-width: 0px">
-                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#jeloloeditmodal">
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#jeloloeditmodal-<%= jelolo._id %>">
                             <i class="bi bi-pencil-square"></i> 
                         </button>
-                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#jelolodeletemodal">
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#jelolodeletemodal-<%= jelolo._id %>">
                             <i class="bi bi-trash"></i>
                         </button>
                     </td>
                 </tr>
-                <tr >
-                    <td style="border-right-width: 0px">
-                        LMP
-                    </td>
-                    <td style="text-align: right; border-left-width: 0px">
-                        <button class="btn btn-primary">
-                            <i class="bi bi-pencil-square"></i> 
-                        </button>
-                        <button class="btn btn-danger">
-                            <i class="bi bi-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-                <tr">
-                    <td style="border-right-width: 0px">
-                        stb...
-                    </td>
-                    <td style="text-align: right; border-left-width: 0px">
-                        <button class="btn btn-primary">
-                            <i class="bi bi-pencil-square"></i> 
-                        </button>
-                        <button class="btn btn-danger">
-                            <i class="bi bi-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        
-                <!-- Modals -->
-
-                <div class="modal fade" id="jeloloaddmodal">
+                <div class="modal fade" id="jelolodeletemodal-<%= jelolo._id %>">
                     <div class="modal-dialog">
                         <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Jelölő szervezet adatainak módosítása</h5>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="mb-3" style="text-align: start;">
-                                    <label for="oevknev" class="form-label">Név:</label>
-                                    <input type="text" class="form-control" id="oevknev">
-                                    <label for="ideologiak" class="form-label">Ideológiák:</label>
-                                    <input type="text" class="form-control", id="ideologiak">
-                                    <label for="kepviseloprogram" class="form-label">Programja:</label>
-                                    <input type="text" class="form-control" id="kepviseloprogram">
-                                    <label for="kepviseloprogram" class="form-label">Bemutatkozás:</label>
-                                    <input type="text" class="form-control" id="kepviseloprogram">
-                                    <label for="kepviseloprogram" class="form-label">Kép:</label>
-                                    <input type="file" class="form-control" id="kepviseloprogram">
-                                </div>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégsem</button>
-                                <button type="submit" class="btn btn-primary">Módosítás</button>
-                            </form>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-        
-                <div class="modal fade" id="jelolodeletemodal">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Választókerület törlése</h5>
+                            <h5 class="modal-title">Jelölő szervezet törlése</h5>
                         </div>
                         <div class="modal-body">
                             <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -119,34 +61,40 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégsem</button>
-                            <button type="button" class="btn btn-primary">Igen</button>
+                            <a href="/jelolo/delete/<%= jelolo._id %>">
+                                <button type="button" class="btn btn-primary">
+                                    Igen
+                                </button>
+                            </a>
                         </div>
                         </div>
                     </div>
                 </div>
         
-                <div class="modal fade" id="jeloloeditmodal">
+                <div class="modal fade" id="jeloloeditmodal-<%= jelolo._id %>">
                     <div class="modal-dialog">
                         <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Jelölő szervezet adatainak módosítása</h5>
                         </div>
                         <div class="modal-body">
-                            <form>
+                            <form method="POST" action="/jelolo/edit/<%= jelolo._id %>">
                                 <div class="mb-3" style="text-align: start;">
                                     <label for="oevknev" class="form-label">Név:</label>
-                                    <input type="text" class="form-control" id="oevknev" value="Fidesz - Magyar Polgári Szövetség">
+                                    <input type="text" class="form-control" id="oevknev" name="nev" value="<%= jelolo.nev %>">
                                     <label for="ideologiak" class="form-label">Ideológiák:</label>
-                                    <input type="text" class="form-control", id="ideologiak" value="nemzeti konzervatizmus, antikommunizmus, nacionalizmus, kereszténydemokrácia, euroszkepticizmus">
+                                    <input type="text" class="form-control", id="ideologiak" name="ideologiak" value="<%= jelolo.ideologiak %>">
                                     <label for="kepviseloprogram" class="form-label">Programja:</label>
-                                    <input type="text" class="form-control" id="kepviseloprogram" value="Nincs">
-                                    <label for="kepviseloprogram" class="form-label">Bemutatkozás:</label>
-                                    <input type="text" class="form-control" id="kepviseloprogram" value="Lorem ipsum ...">
-                                    <label for="kepviseloprogram" class="form-label">Kép:</label>
-                                    <div>
-                                        <img width="150px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Fidesz_2015.svg/1024px-Fidesz_2015.svg.png">
-                                    </div>
-                                    <input type="file" class="form-control" id="kepviseloprogram" value="c://sup/baby/take/me/to/dinner">
+                                    <input type="text" class="form-control" id="kepviseloprogram" name="program" value="<%= jelolo.program %>">
+                                    <label for="leiras" class="form-label">Leírás:</label>
+                                    <input type="text" class="form-control" id="leiras" name="leiras" value="<%= jelolo.bemutatkozas %>">
+                                    <!-- <label class="form-check-label" for="parte>">Párt?</label>
+                                    <br>
+                                    <input class="form-check-input" type="checkbox" name="parte" value="<%= jelolo.parte %>" id="parte" >
+                                    <br> -->
+                                    <label for="kep" class="form-label">Kép:</label>
+                                    <input type="text" class="form-control" id="kep" name="kep" value="<%= jelolo.kep %>">
+                                    <input type="hidden" name="ret" value="/jelolo/list" >
                                 </div>
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégsem</button>
                                 <button type="submit" class="btn btn-primary">Módosítás</button>
@@ -155,6 +103,41 @@
                         </div>
                     </div>
                 </div>
+                <% }) %>
+            </tbody>
+        </table>
+        <div class="modal fade" id="jeloloaddmodal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Új jelölő szervet hozzáadása</h5>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="/jelolo/new">
+                        <div class="mb-3" style="text-align: start;">
+                            <label for="oevknev" class="form-label">Név:</label>
+                            <input type="text" class="form-control" id="oevknev" name="nev" >
+                            <label for="ideologiak" class="form-label">Ideológiák:</label>
+                            <input type="text" class="form-control", id="ideologiak" name="ideologiak" >
+                            <label for="kepviseloprogram" class="form-label">Programja:</label>
+                            <input type="text" class="form-control" id="kepviseloprogram" name="program" >
+                            <label for="leiras" class="form-label">Leírás:</label>
+                            <input type="text" class="form-control" id="leiras" name="leiras" >
+                            <!-- <label class="form-check-label" for="parte>">Párt:</label>
+                            <br>
+                            <input class="form-check-input" type="checkbox" name="parte" id="parte" >
+                            <br> -->
+                            <label for="kep" class="form-label">Kép:</label>
+                            <input type="text" class="form-control" id="kep" name="kep" >
+                            <input type="hidden" name="ret" value="/jelolo/list">
+                        </div>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégsem</button>
+                        <button type="submit" class="btn btn-primary">Mentés</button>
+                    </form>
+                </div>
+                </div>
+            </div>
+        </div>
         </div>
 </body>
 </html>
