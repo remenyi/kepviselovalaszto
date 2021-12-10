@@ -14,7 +14,7 @@ module.exports = function (objectrepository) {
 
         res.locals.ovk.nev = req.body.nev;
         res.locals.ovk._kepviselok = req.body.kepviselok;
-s
+        
         res.locals.ovk.save(err => {
             if (err) {
                 return next(err);
